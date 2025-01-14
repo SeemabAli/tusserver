@@ -1,5 +1,6 @@
+// App.jsx
 import React from 'react';
-import Uploader from './Uploader';
+import Uploader from './Uploader'; // Make sure this matches the file path correctly
 
 const App = () => {
   return (

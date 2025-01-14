@@ -19,7 +19,8 @@ const Uploader = () => {
         }
 
         const newUpload = new Upload(file, {
-            endpoint: 'https://tusd.tusdemo.net/files/', // Replace with your server's endpoint
+            // Use the provided endpoint for your server
+            endpoint: 'https://ahcl.tssclinicallabs.com/uploads', // Your server's endpoint
             metadata: {
                 filename: file.name,
                 filetype: file.type,
@@ -27,6 +28,7 @@ const Uploader = () => {
             onError: (error) => {
                 console.error('Upload failed:', error);
                 alert(`Upload failed: ${error.message}`);
+                setIsUploading(false); // Reset the uploading status
             },
             onProgress: (bytesUploaded, bytesTotal) => {
                 const percentage = (bytesUploaded / bytesTotal * 100).toFixed(2);
@@ -65,7 +67,7 @@ const Uploader = () => {
         <div>
             <h1>File Upload with tus-js-client</h1>
             <input type="file" onChange={handleFileChange} />
-            <button onClick={handleUpload} disabled={isUploading}>Upload</button>
+            <button onClick={handleUpload} disabled={isUploading || !file}>Upload</button>
             {isUploading && <button onClick={handlePause}>Pause</button>}
             {uploadProgress > 0 && (
                 <p>Upload Progress: {uploadProgress}%</p>

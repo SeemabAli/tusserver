@@ -20,7 +20,7 @@ const Uploader = () => {
 
         const newUpload = new Upload(file, {
             // Use the provided endpoint for your server
-            endpoint: 'https://ahcl.tssclinicallabs.com/uploads', // Your server's endpoint
+            endpoint: 'http://ahcl.tssclinicallabs.com/uploads', // Your server's endpoint
             metadata: {
                 filename: file.name,
                 filetype: file.type,

@@ -8,6 +8,11 @@ const app = express();
 
 // Enable CORS for all origins
 app.use(cors());
+const corsOptions = {
+    origin: '*',
+    credentials: true,
+}
+app.use(cors(corsOptions));
 
 // Configure multer to store files in a local directory
 const storage = multer.diskStorage({
@@ -31,7 +36,7 @@ app.post('/uploads', upload.single('file'), (req, res) => {
     }
 
     // Construct the cloud path URL
-    const cloudPath = `https://ahcl.tssclinicallabs.com/uploads/${req.file.originalname}`;
+    const cloudPath = `http://ahcl.tssclinicallabs.com/uploads/${req.file.originalname}`;
 
     res.send({
         message: 'File uploaded successfully!',
@@ -41,7 +46,7 @@ app.post('/uploads', upload.single('file'), (req, res) => {
 });
 
 // Start the server
-const PORT = 5000;
+const PORT = 5004;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
